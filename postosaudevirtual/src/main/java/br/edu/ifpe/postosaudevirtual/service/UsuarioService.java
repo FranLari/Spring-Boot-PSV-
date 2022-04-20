@@ -26,5 +26,9 @@ public class UsuarioService {
 		
 	}
 	
+	public void saveUsuario(Usuario usuario) {
+		lista.add(usuario);
+	}
+	
 
 }
