@@ -1,34 +1,20 @@
 package br.edu.ifpe.postosaudevirtual.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
+import br.edu.ifpe.postosaudevirtual.dao.UsuarioDAO;
 import br.edu.ifpe.postosaudevirtual.model.Usuario;
 
 public class UsuarioService {
-	ArrayList<Usuario>lista= new ArrayList<Usuario>();
-	public ArrayList<Usuario> listAllUsuario(){
-		Usuario usuario= new Usuario();
-		usuario.setCpf("1234");
-		usuario.setNome("Hiany");
-		
-		Usuario usuario1= new Usuario();
-		usuario1.setCpf("1234");
-		usuario1.setNome("Silva");
-		
-		
-		lista.add(usuario);
-		lista.add(usuario1);
-		return lista;
-
-		
-		
-		
+	UsuarioDAO usuariodao = new UsuarioDAO();
+	public void saveUsuario(Usuario usuario) throws ClassNotFoundException, SQLException {
+		usuariodao.adiciona(usuario);
+	}
+	public void listAllUsuario(Usuario usuario){
 		
 	}
-	
-	public void saveUsuario(Usuario usuario) {
-		lista.add(usuario);
-	}
-	
-
 }
+	

@@ -1,5 +1,6 @@
 package br.edu.ifpe.postosaudevirtual.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -22,9 +23,7 @@ public class UsuarioController {
 	UsuarioService usuarioService = new UsuarioService ();
 	@GetMapping ("")
 	public List<Usuario>list(){
-		return usuarioService.listAllUsuario();
-		
-		
+		return usuarioService.listAllUsuario(usuario);
 	}
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> consultarUsuarioPorId(@PathVariable Integer id){
@@ -32,13 +31,11 @@ public class UsuarioController {
 			return new ResponseEntity<Usuario>(usuarioService.listAllUsuario().get(id),HttpStatus.OK);
 		}catch (NoSuchElementException e) {
 			return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
-					
 		}
-		
 	}
-	
+
 	@PostMapping("/")
-	public void add(@RequestBody Usuario usuario) {
+	public void add(@RequestBody Usuario usuario) throws ClassNotFoundException, SQLException {
 		usuarioService.saveUsuario(usuario);
 	}
 
