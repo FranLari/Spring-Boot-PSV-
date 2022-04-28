@@ -17,7 +17,7 @@ public class UsuarioDAO {
 	public void adiciona(Usuario usuario) throws ClassNotFoundException, SQLException {
 		 //conectamos no banco 
 		 Connection connection = ConexaoMySQL.getConexaoMySQL();
-       String sql = "INSERT INTO `aluno`"
+       String sql = "INSERT INTO `usuario`"
        		+ "(`CÓDIGO_USUÁRIO`, `Nº DO CARTÃO DO SUS`, `CPF`, `NOME`, `DATA DE NASCIMENTO`, `E-MAIL`, `SENHA`, `TELEFONE`) "
        		+ "VALUES (  ? , ? , ? , ?, ?, ?, ?, ?)"; 	 
    	 //prepara��o da declara��o
@@ -37,7 +37,7 @@ public class UsuarioDAO {
        connection.close();
     }
 	
-	public List<Usuario> consultarTodosAlunos() throws ClassNotFoundException, SQLException{
+	public List<Usuario> consultarTodosUsuarios() throws ClassNotFoundException, SQLException{
 		 Connection connection = ConexaoMySQL.getConexaoMySQL();
 		 String sql = "SELECT `codigo_usuario`, `numeroCartaoSus`, `cpf`, `nome`, `dataNascimento`, `email`, `senha`, `telefone` FROM `usuario`"; 
 	     PreparedStatement stmt = connection.prepareStatement(sql);
@@ -67,7 +67,7 @@ public class UsuarioDAO {
 
 	 }
 	 
-	public Usuario consultarAluno(int codigo_usuario) throws ClassNotFoundException, SQLException {
+	public Usuario consultarUsuario(int codigo_usuario) throws ClassNotFoundException, SQLException {
 		 Connection connection = ConexaoMySQL.getConexaoMySQL();
 		 String sql = "SELECT * FROM `usuario` WHERE codigo = ? ";
 
@@ -113,7 +113,7 @@ public class UsuarioDAO {
 
 	 }
 	
-	public void deletarAlunoDAO(int codigo_usuario) throws ClassNotFoundException, SQLException {
+	public void deletarUsuarioDAO(int codigo_usuario) throws ClassNotFoundException, SQLException {
 		 Connection connection = ConexaoMySQL.getConexaoMySQL();
 		 String sql = "DELETE FROM `usuario` WHERE codigo_usuario = ?";
 
