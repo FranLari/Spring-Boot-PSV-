@@ -1,27 +1,26 @@
 package br.edu.ifpe.postosaudevirtual.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
-import br.edu.ifpe.postosaudevirtual.dao.UsuarioDAO;
+import br.edu.ifpe.postosaudevirtual.dao.UsuarioDao;
 import br.edu.ifpe.postosaudevirtual.model.Usuario;
 
 public class UsuarioService {
-	UsuarioDAO usuariodao = new UsuarioDAO();
-	public List<Usuario> consultarTodosUsuarios() throws ClassNotFoundException, SQLException {
-		return usuariodao.consultarTodosUsuarios();
+	
+	UsuarioDao usuariodao = new UsuarioDao();
+	public List<Usuario> listar() {
+		return usuariodao.listar();
 	}
 	
-	public void adiciona(Usuario usuario) throws ClassNotFoundException, SQLException {
-		usuariodao.adiciona(usuario);
+	public void alterar(Usuario usuario) {
+		usuariodao.alterar(usuario);
 	}
 	
-	public void alterarUsuarioDAO(Usuario usuario) throws ClassNotFoundException, SQLException {
-		usuariodao.alterarUsuarioDAO(usuario);
+	public void inserir(Usuario usuario) {
+		usuariodao.inserir(usuario);
 	}
 	
-	public void deletarUsuarioDAO(int id) throws ClassNotFoundException, SQLException {
-		usuariodao.deletarUsuarioDAO(id);
+	public void remover(int id) {
+		usuariodao.remover(id);
 	}
 }
-	

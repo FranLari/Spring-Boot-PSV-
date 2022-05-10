@@ -1,4 +1,4 @@
-package br.edu.ifpe.postosaudevirtual.model;
+package br.edu.ifpe.postosaudevirtual.model; 
 
 public class Usuario {
 	private int codigo_usuario;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+//import br.edu.ifpe.postosaudevirtual.dao.UsuarioDAO;
 import br.edu.ifpe.postosaudevirtual.model.Usuario;
 import br.edu.ifpe.postosaudevirtual.service.UsuarioService;
 
@@ -23,32 +24,36 @@ import br.edu.ifpe.postosaudevirtual.service.UsuarioService;
 
 public class UsuarioController {
 	UsuarioService usuarioService = new UsuarioService();
+	
+	//	UsuarioDAO usuarioDao = new UsuarioDAO();
+	
 	@GetMapping ("")
-	public List<Usuario>list() throws ClassNotFoundException, SQLException{
-		return usuarioService.consultarTodosUsuarios();
+	public List<Usuario> List() {
+		return usuarioService.listar();
 	}
+	
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> consultarUsuarioPorId(@PathVariable Integer id) throws ClassNotFoundException, SQLException{
+	public ResponseEntity<Usuario> consultarPessoaPorId(@PathVariable Integer id){
 		try {
-			return new ResponseEntity<Usuario>(usuarioService.consultarTodosUsuarios().get(id),HttpStatus.OK);
-		}catch (NoSuchElementException e) {
+			return new ResponseEntity<Usuario>(usuarioService.listar().get(id), HttpStatus.OK);
+		}catch(NoSuchElementException e) {
 			return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
 		}
 	}
-
+	
 	@PostMapping("/")
-	public void add(@RequestBody Usuario usuario) throws ClassNotFoundException, SQLException {
-		usuarioService.adiciona(usuario);
+	public void add(@RequestBody Usuario usuario) {
+		usuarioService.inserir(usuario);
 	}
 	
 	@DeleteMapping("/r/{id}")
-	public void remove(@PathVariable Integer id) throws ClassNotFoundException, SQLException {
-		usuarioService.deletarUsuarioDAO(id);
+	public void remove(@PathVariable Integer id) {
+		usuarioService.remover(id);
 	}
 	
 	@PutMapping("/u")
-	public void update(@RequestBody Usuario usuario) throws ClassNotFoundException, SQLException {
-		usuarioService.alterarUsuarioDAO(usuario);
+	public void update(@RequestBody Usuario usuario) {
+		usuarioService.alterar(usuario);
 	}
 
 }
